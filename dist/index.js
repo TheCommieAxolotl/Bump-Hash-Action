@@ -8495,11 +8495,12 @@ async function run() {
 
     if (bumpRgx.test(payload.head_commit.message)) {
         const pkjPath = __nccwpck_require__.ab + "package.json"
-        fs.readFile(__nccwpck_require__.ab + "package.json", 'utf8', (err, data) => {console.log(data)})
+        const data = fs.readFileSync(__nccwpck_require__.ab + "package.json", 'utf8')
 
-        console.log(__nccwpck_require__.ab + "package.json");
+        let pkj = JSON.parse(data)
+        console.log(__nccwpck_require__.ab + "package.json", pkj);
 
-        const newHash = createHash("sha512");
+        const newHash = createHash("sha512").update(data).digest("hex");
 
         console.log(newHash)
     }

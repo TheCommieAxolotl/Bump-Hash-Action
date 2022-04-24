@@ -17,11 +17,12 @@ async function run() {
 
     if (bumpRgx.test(payload.head_commit.message)) {
         const pkjPath = path.join(__dirname, "../", "package.json")
-        fs.readFile(pkjPath, 'utf8', (err, data) => {console.log(data)})
+        const data = fs.readFileSync(pkjPath, 'utf8')
 
-        console.log(pkjPath);
+        let pkj = JSON.parse(data)
+        console.log(pkjPath, pkj);
 
-        const newHash = createHash("sha512");
+        const newHash = createHash("sha512").update(data).digest("hex");
 
         console.log(newHash)
     }
