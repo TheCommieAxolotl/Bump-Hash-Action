@@ -11,7 +11,7 @@ async function run() {
     const { context = {} } = github;
     const payload = JSON.stringify(github.context.payload, undefined, 2);
 
-    console.log(context, payload, payload.head_commit.message, bumpRgx.test(payload.head_commit.message));
+    console.log(context, payload);
 }
 
 run()
