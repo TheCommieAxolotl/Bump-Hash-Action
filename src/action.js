@@ -13,18 +13,26 @@ async function run() {
     const { context = {} } = github;
     const payload = context.payload;
 
-    console.log(require.main.filename)
-
     if (bumpRgx.test(payload.head_commit.message)) {
         const pkjPath = path.join(__dirname, "../", "package.json")
         const data = fs.readFileSync(pkjPath, 'utf8')
 
         let pkj = JSON.parse(data)
-        // console.log(pkjPath, pkj);
+        console.log(pkjPath, pkj);
 
-        const newHash = createHash("sha512").update(data).digest("hex");
+        let newHash = createHash("sha512").update(data).digest("hex");
+        newHash = newHash.slice(0, 6)
 
-        console.log(newHash)
+        if (typeof pkj.hash !== "undefined" && pkj.hash !== newHash) {
+            pkj.hash = newHash
+            fs.writeFileSync(pkjPath, JSON.stringify(pkj))
+            console.log("Updated package.json hash to:", newHash)
+        } else if (typeof pkj.info.hash !== "undefined" && pkj.info.hash !== newHash) {
+            pkj.info.hash = newHash
+            fs.writeFileSync(pkjPath, JSON.stringify(pkj))
+            console.log("Updated package.json hash to:", newHash)
+        }
+        console.log(newHash);
     }
 
     console.log(payload.head_commit.message, bumpRgx.test(payload.head_commit.message))
