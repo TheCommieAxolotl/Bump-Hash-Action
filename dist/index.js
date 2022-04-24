@@ -8476,11 +8476,12 @@ async function run() {
     const PACKAGE_PATH = core.getInput('PACKAGE_PATH');
 
     const octokit = github.getOctokit(GITHUB_TOKEN);
+    const bumpRgx = /bump version/gi
 
     const { context = {} } = github;
-    const { push } = context.payload
+    const payload = JSON.stringify(github.context.payload, undefined, 2);
 
-    console.log(context)
+    console.log(context, payload, payload.head_commit.message, bumpRgx.test(payload.head_commit.message));
 }
 
 run()
