@@ -16,7 +16,6 @@
     "bugs": {
         "url": "https://github.com/TheCommieAxolotl/Bump-Hash-Action/issues"
     },
-    "homepage": "https://github.com/TheCommieAxolotl/Bump-Hash-Action#readme",
     "dependencies": {
         "@actions/core": "^1.6.0",
         "@actions/github": "^5.0.1",
