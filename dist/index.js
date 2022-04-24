@@ -8476,7 +8476,7 @@ async function run() {
     const PACKAGE_PATH = core.getInput('PACKAGE_PATH');
 
     const octokit = github.getOctokit(GITHUB_TOKEN);
-    const bumpRgx = /bump version/gi
+    const bumpRgx = /bump[\s]?version/gi
 
     const { context = {} } = github;
     const payload = JSON.stringify(github.context.payload, undefined, 2);
