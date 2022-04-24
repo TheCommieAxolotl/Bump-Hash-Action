@@ -8496,7 +8496,6 @@ async function run() {
         const data = fs.readFileSync(__nccwpck_require__.ab + "package.json", 'utf8')
 
         let pkj = JSON.parse(data)
-        console.log(__nccwpck_require__.ab + "package.json", pkj);
 
         let newHash = createHash("sha512").update(data).digest("hex");
         newHash = newHash.slice(0, 6)
@@ -8510,10 +8509,7 @@ async function run() {
             fs.writeFileSync(__nccwpck_require__.ab + "package.json", JSON.stringify(pkj))
             console.log("Updated package.json hash to:", newHash)
         }
-        console.log(newHash);
     }
-
-    console.log(payload.head_commit.message, bumpRgx.test(payload.head_commit.message))
 }
 
 run()

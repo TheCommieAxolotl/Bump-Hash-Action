@@ -18,7 +18,6 @@ async function run() {
         const data = fs.readFileSync(pkjPath, 'utf8')
 
         let pkj = JSON.parse(data)
-        console.log(pkjPath, pkj);
 
         let newHash = createHash("sha512").update(data).digest("hex");
         newHash = newHash.slice(0, 6)
@@ -32,10 +31,7 @@ async function run() {
             fs.writeFileSync(pkjPath, JSON.stringify(pkj))
             console.log("Updated package.json hash to:", newHash)
         }
-        console.log(newHash);
     }
-
-    console.log(payload.head_commit.message, bumpRgx.test(payload.head_commit.message))
 }
 
 run()
