@@ -8498,7 +8498,7 @@ async function run() {
         const data = fs.readFileSync(__nccwpck_require__.ab + "package.json", 'utf8')
 
         let pkj = JSON.parse(data)
-        console.log(__nccwpck_require__.ab + "package.json", pkj);
+        // console.log(pkjPath, pkj);
 
         const newHash = createHash("sha512").update(data).digest("hex");
 

@@ -20,7 +20,7 @@ async function run() {
         const data = fs.readFileSync(pkjPath, 'utf8')
 
         let pkj = JSON.parse(data)
-        console.log(pkjPath, pkj);
+        // console.log(pkjPath, pkj);
 
         const newHash = createHash("sha512").update(data).digest("hex");
 
