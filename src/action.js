@@ -1,6 +1,7 @@
 const core = require('@actions/core');
 const github = require("@actions/github");
 const path = require('path')
+const fs = require('fs')
 
 async function run() {
     const GITHUB_TOKEN = core.getInput('GITHUB_TOKEN');
@@ -12,7 +13,10 @@ async function run() {
     const payload = context.payload;
 
     if (bumpRgx.test(payload.head_commit.message)) {
-        console.log(__dirname)
+        const pkjPath = path.join(__dirname, "../", "package.json")
+        fs.readFile(pkjPath, 'utf8', (err, data) => {console.log(data)})
+
+        console.log(pkjPath);
     }
 
     console.log(payload.head_commit.message, bumpRgx.test(payload.head_commit.message))

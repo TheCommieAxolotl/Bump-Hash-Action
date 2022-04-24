@@ -8471,6 +8471,7 @@ var __webpack_exports__ = {};
 const core = __nccwpck_require__(2186);
 const github = __nccwpck_require__(5438);
 const path = __nccwpck_require__(1017)
+const fs = __nccwpck_require__(7147)
 
 async function run() {
     const GITHUB_TOKEN = core.getInput('GITHUB_TOKEN');
@@ -8482,7 +8483,10 @@ async function run() {
     const payload = context.payload;
 
     if (bumpRgx.test(payload.head_commit.message)) {
-        console.log(__dirname)
+        const pkjPath = __nccwpck_require__.ab + "package.json"
+        fs.readFile(__nccwpck_require__.ab + "package.json", 'utf8', (err, data) => {console.log(data)})
+
+        console.log(__nccwpck_require__.ab + "package.json");
     }
 
     console.log(payload.head_commit.message, bumpRgx.test(payload.head_commit.message))
