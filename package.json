@@ -4,6 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
+        "move": "cp -i ./src/action.js ./dist/index.js",
         "build": "ncc build src/action.js -o dist"
     },
     "repository": {
