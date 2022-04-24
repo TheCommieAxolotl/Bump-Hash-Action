@@ -1,4 +1,5 @@
 name: "Bump Hash"
+description: 'Automatically bumps a project's Hash after a "Bump Version" commit.'
 author: "TheCommieAxolotl"
 
 inputs:
