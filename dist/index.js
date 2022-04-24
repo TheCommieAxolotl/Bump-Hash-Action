@@ -8315,6 +8315,14 @@ module.exports = require("assert");
 
 /***/ }),
 
+/***/ 6113:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("crypto");
+
+/***/ }),
+
 /***/ 2361:
 /***/ ((module) => {
 
@@ -8472,6 +8480,7 @@ const core = __nccwpck_require__(2186);
 const github = __nccwpck_require__(5438);
 const path = __nccwpck_require__(1017)
 const fs = __nccwpck_require__(7147)
+const { createHash } = __nccwpck_require__(6113);
 
 async function run() {
     const GITHUB_TOKEN = core.getInput('GITHUB_TOKEN');
@@ -8482,11 +8491,17 @@ async function run() {
     const { context = {} } = github;
     const payload = context.payload;
 
+    console.log(require.main.filename)
+
     if (bumpRgx.test(payload.head_commit.message)) {
         const pkjPath = __nccwpck_require__.ab + "package.json"
         fs.readFile(__nccwpck_require__.ab + "package.json", 'utf8', (err, data) => {console.log(data)})
 
         console.log(__nccwpck_require__.ab + "package.json");
+
+        const newHash = createHash("sha512");
+
+        console.log(newHash)
     }
 
     console.log(payload.head_commit.message, bumpRgx.test(payload.head_commit.message))
