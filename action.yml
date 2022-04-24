@@ -1,9 +1,9 @@
 name: "Bump Hash"
 description: 'Automatically bumps a projects Hash after a "Bump Version" commit.'
-icon: "hash"
+author: "TheCommieAxolotl"
 branding:
+    icon: "hash"
     color: "blue"
-    author: "TheCommieAxolotl"
 
 inputs:
     PACKAGE_PATH:
