@@ -1,0 +1,25 @@
+{
+    "name": "bump-hash-action",
+    "version": "0.0.1",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "build": "ncc build src/action.js -o dist"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/TheCommieAxolotl/Bump-Hash-Action.git"
+    },
+    "author": "TheCommieAxolotl",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/TheCommieAxolotl/Bump-Hash-Action/issues"
+    },
+    "homepage": "https://github.com/TheCommieAxolotl/Bump-Hash-Action#readme",
+    "dependencies": {
+        "@vercel/ncc": "^0.33.4"
+    },
+    "info": {
+        "hash": "e"
+    }
+}

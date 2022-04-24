@@ -1,0 +1,15 @@
+name: "Bump Hash"
+author: "TheCommieAxolotl"
+
+inputs:
+    PACKAGE_PATH:
+        description: "Path to the package.json file."
+        required: true
+        default: "package.json"
+    GITHUB_TOKEN:
+        description: "Github Token."
+        required: true
+
+runs:
+    using: "node12"
+    main: "dist/index.js"

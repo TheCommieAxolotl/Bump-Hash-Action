@@ -1,0 +1,13 @@
+name: Bump Verison
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    bump:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: ./
