@@ -1,5 +1,6 @@
 const core = require('@actions/core');
 const github = require("@actions/github");
+const path = require('path')
 
 async function run() {
     const GITHUB_TOKEN = core.getInput('GITHUB_TOKEN');
@@ -7,11 +8,14 @@ async function run() {
 
     const octokit = github.getOctokit(GITHUB_TOKEN);
     const bumpRgx = /bump[\s]?(v|version)/gi
-
     const { context = {} } = github;
-    const payload = context.payload
+    const payload = context.payload;
 
-    console.log(context, payload.head_commit.message, bumpRgx.test(payload.head_commit.message))
+    if (bumpRgx.test(payload.head_commit.message)) {
+        console.log(__dirname)
+    }
+
+    console.log(payload.head_commit.message, bumpRgx.test(payload.head_commit.message))
 }
 
 run()

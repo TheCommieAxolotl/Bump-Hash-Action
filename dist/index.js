@@ -8470,6 +8470,7 @@ var __webpack_exports__ = {};
 (() => {
 const core = __nccwpck_require__(2186);
 const github = __nccwpck_require__(5438);
+const path = __nccwpck_require__(1017)
 
 async function run() {
     const GITHUB_TOKEN = core.getInput('GITHUB_TOKEN');
@@ -8477,11 +8478,14 @@ async function run() {
 
     const octokit = github.getOctokit(GITHUB_TOKEN);
     const bumpRgx = /bump[\s]?(v|version)/gi
-
     const { context = {} } = github;
-    const payload = context.payload
+    const payload = context.payload;
 
-    console.log(context, payload.head_commit.message, bumpRgx.test(payload.head_commit.message))
+    if (bumpRgx.test(payload.head_commit.message)) {
+        console.log(__dirname)
+    }
+
+    console.log(payload.head_commit.message, bumpRgx.test(payload.head_commit.message))
 }
 
 run()
