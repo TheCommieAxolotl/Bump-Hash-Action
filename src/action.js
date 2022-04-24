@@ -10,8 +10,7 @@ async function run() {
     const { context = {} } = github;
     const { push } = context.payload
 
-    console.log("push", "context", "GITHUB_TOKEN");
-    console.log(push, context, GITHUB_TOKEN)
+    console.log(context)
 }
 
 run()
