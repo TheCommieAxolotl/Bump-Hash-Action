@@ -15,7 +15,7 @@ async function run() {
 
     if (bumpRgx.test(payload.head_commit.message)) {
         const pkjPath = path.join(__dirname, "../", "package.json")
-        if (!fs.existsSync(file.path)) return console.error("package.json not found")
+        if (!fs.existsSync(pkjPath)) return console.error("package.json not found");
         const data = fs.readFileSync(pkjPath, 'utf8')
 
         let pkj = JSON.parse(data)
