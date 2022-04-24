@@ -8479,9 +8479,9 @@ async function run() {
     const bumpRgx = /bump[\s]?version/gi
 
     const { context = {} } = github;
-    const payload = JSON.stringify(github.context.payload, undefined, 2);
+    const payload = context.payload
 
-    console.log(context, payload);
+    console.log(context, payload.head_commit.message, bumpRgx.test(payload.head_commit.message))
 }
 
 run()
