@@ -24,11 +24,11 @@ async function run() {
 
         if (typeof pkj.hash !== "undefined" && pkj.hash !== newHash) {
             pkj.hash = newHash
-            fs.writeFileSync(pkjPath, JSON.stringify(pkj))
+            fs.writeFileSync(pkjPath, JSON.stringify(pkj, null, "\t"));
             console.log("Updated package.json hash to:", newHash)
         } else if (typeof pkj.info.hash !== "undefined" && pkj.info.hash !== newHash) {
             pkj.info.hash = newHash
-            fs.writeFileSync(pkjPath, JSON.stringify(pkj))
+            fs.writeFileSync(pkjPath, JSON.stringify(pkj, null, "\t"));
             console.log("Updated package.json hash to:", newHash)
         }
     }
