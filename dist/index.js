@@ -3,6 +3,7 @@ const github = require("@actions/github");
 const path = require('path')
 const fs = require('fs')
 const { createHash } = require("crypto");
+const { exec } = require('child_process');
 
 async function run() {
     const GITHUB_TOKEN = core.getInput('GITHUB_TOKEN');
@@ -27,10 +28,38 @@ async function run() {
             pkj.hash = newHash
             fs.writeFileSync(pkjPath, JSON.stringify(pkj, null, "\t"));
             console.log("Updated package.json hash to:", newHash)
+            
+exec(`
+git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+git config --local user.name "github-actions[bot]"
+git commit -m "Bump Hash" -a
+git push -u origin main
+`,
+    (err, stdout, stderr) => {
+        if (err) {
+            console.error(`exec error: ${err}`);
+            return;
+        }
+    },
+);
         } else if (typeof pkj.info.hash !== "undefined" && pkj.info.hash !== newHash) {
             pkj.info.hash = newHash
             fs.writeFileSync(pkjPath, JSON.stringify(pkj, null, "\t"));
             console.log("Updated package.json hash to:", newHash)
+            exec(
+                `
+git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+git config --local user.name "github-actions[bot]"
+git commit -m "Bump Hash" -a
+git push -u origin main
+`,
+                (err, stdout, stderr) => {
+                    if (err) {
+                        console.error(`exec error: ${err}`);
+                        return;
+                    }
+                },
+            );
         }
     }
 }
